@@ -1,4 +1,6 @@
 export class Negociacao {
+
+    //Sempre definir tipos de cada campo criado e evitar o tipo ANY
     private _data: Date;
     private _quantidade: number;
     private _valor: number;
@@ -8,7 +10,7 @@ export class Negociacao {
         this._quantidade = quantidade;
         this._valor = valor;
     }
-
+    //Definir tb os tipos de retorno de cada metodo para evitar erros
     get data(): Date {
         return this._data
     }
