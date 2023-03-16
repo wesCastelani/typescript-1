@@ -4,6 +4,7 @@ export class Negociacao {
         this._quantidade = quantidade;
         this._valor = valor;
     }
+    //Definir tb os tipos de retorno de cada metodo para evitar erros
     get data() {
         return this._data;
     }
