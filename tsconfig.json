@@ -9,3 +9,12 @@
         "app/**/*"
     ]
 }
+//OutDir Representa a pasta onde o compilador 
+//deve colocar os arquivos JS gerados por ele
+//Target define qual versão do ES ele deve utilizar
+//NoEmitOnError define se o compilador deve ou não compilar quando
+//houver algum erro de compilação
+//noImplicitAny define se podemos ou não usar o tipo any de forma
+//implicita
+//Include define onde o compilador precisa procurar os arquivos TS
+//para serem compilados
