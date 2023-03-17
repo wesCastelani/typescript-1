@@ -1,29 +1,22 @@
 export class Negociacao {
 
     //Sempre definir tipos de cada campo criado e evitar o tipo ANY
-    private _data: Date;
-    private _quantidade: number;
-    private _valor: number;
 
-    constructor(data: Date, quantidade: number, valor: number) {
-        this._data = data;
-        this._quantidade = quantidade;
-        this._valor = valor;
-    }
-    //Definir tb os tipos de retorno de cada metodo para evitar erros
-    get data(): Date {
-        return this._data
-    }
+    //private _data: Date;
+    //private _quantidade: number;
+    //private _valor: number;
 
-    get quantidade(): number {
-        return this._quantidade
-    }
+    //Se no meu construtor eu explicitar o private o TS define sozinho que isso é uma entidade da classe (:
+    //Definidno como public e readonly eu não preciso usar getters
+    constructor(private _data: Date, public readonly _quantidade: number, public readonly _valor: number) { }
 
-    get valor(): number {
-        return this._valor
-    }
 
     get volume(): number {
         return this._quantidade * this._valor
+    }
+
+    get data(): Date {
+        const data = new Date(this._data.getTime());
+        return data;
     }
 }
