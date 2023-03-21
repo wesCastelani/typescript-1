@@ -1,6 +1,8 @@
 export class Negociacoes {
     constructor() {
         //Definir nos <> o tipo que a lista deve receber
+        //private negociacoes: Array<Negociacao> = [];
+        //Metodo simplicado de declara um array (:
         this.negociacoes = [];
     }
     //Adiciona uma negociacao na minha lista de negociacoes
