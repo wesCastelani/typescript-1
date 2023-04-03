@@ -8,12 +8,12 @@ export class Negociacoes {
     private negociacoes: Negociacao[] = []
 
     //Adiciona uma negociacao na minha lista de negociacoes
-    adiciona(negociacao: Negociacao): void {
+    public adiciona(negociacao: Negociacao): void {
         this.negociacoes.push(negociacao);
     }
 
     //Lista as negociacoes contidas na lista em uma lista de somente leitura
-    lista(): readonly Negociacao[] {
+    public lista(): readonly Negociacao[] {
         return this.negociacoes;
     }
 }
