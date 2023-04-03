@@ -20,17 +20,21 @@ export class NegociacaoController {
     }
 
     //Adiciona uma nova negociação 
-    adiciona(): void {
+    public adiciona(): void {
         const negociacao = this.criaNegociacao();
-        this.negocicoes.adiciona(negociacao);
-        this.negociacoesView.update(this.negocicoes)
-        this.mensagemView.update("Negociação adicionada com sucesso!")
-        console.log(this.negocicoes.lista());
-        this.limparFormulario();
+        //Verifica se é um dia util antes de adicionar
+        if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
+            this.negocicoes.adiciona(negociacao);
+            this.limparFormulario();
+            this.atualizaView();
+        } else {
+            this.mensagemView
+                .update('Apenas negociações em dias úteis são aceitas')
+        }
     }
 
     //Cria uma negociação a partir dos .value dos elementos HTML
-    criaNegociacao(): Negociacao {
+    private criaNegociacao(): Negociacao {
         //Converter a string do input para um Date
         //Expressão para substituir - por ,
         const exp = /-/g;
@@ -45,7 +49,7 @@ export class NegociacaoController {
     }
 
     //Limpa meu formulario apos a criação de uma negociacão
-    limparFormulario(): void {
+    private limparFormulario(): void {
         //Limpa os valores dos elementos do DOM
         this.inputData.value = '';
         this.inputQtd.value = '';
@@ -53,5 +57,10 @@ export class NegociacaoController {
 
         //Volta o foco para o campo de data
         this.inputData.focus();
+    }
+
+    private atualizaView(): void {
+        this.negociacoesView.update(this.negocicoes)
+        this.mensagemView.update("Negociação adicionada com sucesso!")
     }
 }
