@@ -19,4 +19,19 @@ export class Negociacao {
         const data = new Date(this._data.getTime());
         return data;
     }
+
+    //Utiliza metodo estatico para nao precisar criar um novo objeto para utilizar o metodo
+    public static criaDe(dataString: string, quantidadeString: string, valorString: string): Negociacao {
+        //Converter a string do input para um Date
+        //Expressão para substituir - por ,
+        const exp = /-/g;
+        const date = new Date(dataString.replace(exp, ','));
+
+        //Convertendo os strings para valores numericos;
+        const quantidade = parseInt(quantidadeString);
+        const valor = parseFloat(valorString);
+
+
+        return new Negociacao(date, quantidade, valor)
+    }
 }

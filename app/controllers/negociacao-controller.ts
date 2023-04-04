@@ -22,7 +22,12 @@ export class NegociacaoController {
 
     //Adiciona uma nova negociação 
     public adiciona(): void {
-        const negociacao = this.criaNegociacao();
+        //Cria uma negociação a partir dos .value dos elementos HTML
+        const negociacao = Negociacao.criaDe(
+            this.inputData.value,
+            this.inputQtd.value,
+            this.inputValor.value
+        );
         //Verifica se é um dia util antes de adicionar
         if (!this.verificaDiaUtil(negociacao.data)) {
             this.mensagemView
@@ -34,20 +39,7 @@ export class NegociacaoController {
         this.atualizaView();
     }
 
-    //Cria uma negociação a partir dos .value dos elementos HTML
-    private criaNegociacao(): Negociacao {
-        //Converter a string do input para um Date
-        //Expressão para substituir - por ,
-        const exp = /-/g;
-        const date = new Date(this.inputData.value.replace(exp, ','));
 
-        //Convertendo os strings para valores numericos;
-        const quantidade = parseInt(this.inputQtd.value);
-        const valor = parseFloat(this.inputValor.value);
-
-
-        return new Negociacao(date, quantidade, valor)
-    }
 
     //Limpa meu formulario apos a criação de uma negociacão
     private limparFormulario(): void {
