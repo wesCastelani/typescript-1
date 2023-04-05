@@ -14,9 +14,9 @@ export class NegociacaoController {
 
     //Seleciona os elementos no DOM via querySelector pelo ID
     constructor() {
-        this.inputData = document.querySelector('#data');
-        this.inputQtd = document.querySelector('#quantidade');
-        this.inputValor = document.querySelector('#valor');
+        this.inputData = <HTMLInputElement>document.querySelector('#data');
+        this.inputQtd = <HTMLInputElement>document.querySelector('#quantidade');
+        this.inputValor = <HTMLInputElement>document.querySelector('#valor');
         this.negociacoesView.update(this.negocicoes);
     }
 
