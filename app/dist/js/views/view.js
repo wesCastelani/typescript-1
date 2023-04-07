@@ -6,8 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 export class View {
-    constructor(seletor, escapar) {
-        this.escapar = false;
+    constructor(seletor) {
         const elemento = document.querySelector(seletor);
         if (elemento) {
             this.elemento = elemento;
@@ -15,17 +14,10 @@ export class View {
         else {
             throw Error("Seletor não existe!");
         }
-        if (escapar) {
-            this.escapar = escapar;
-        }
     }
     update(model) {
         let template = this.template(model);
-        if (this.escapar) {
-            template = template.replace(/<script>[\s\S]*?<\/script>/, '');
-        }
         this.elemento.innerHTML = template;
-        const t2 = performance.now();
     }
 }
 __decorate([
