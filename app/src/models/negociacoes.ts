@@ -1,4 +1,4 @@
-import { Negociacao } from "./Negociacao.js";
+import { Negociacao } from "./Negociacao";
 
 export class Negociacoes {
     //Definir nos <> o tipo que a lista deve receber
