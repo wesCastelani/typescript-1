@@ -1,4 +1,4 @@
-import { View } from "./view.js";
+import { View } from "./view";
 
 export class MensagemView extends View<string> {
 

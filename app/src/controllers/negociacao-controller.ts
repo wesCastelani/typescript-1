@@ -1,8 +1,9 @@
-import { DiasDaSemana } from "../enums/DiasDaSemana.js";
-import { Negociacao } from "../models/Negociacao.js";
-import { Negociacoes } from "../models/negociacoes.js";
-import { MensagemView } from "../views/mensagem-view.js";
-import { NegociacoesView } from "../views/negociacoes-view.js";
+import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
+import { DiasDaSemana } from "../enums/DiasDaSemana";
+import { Negociacao } from "../models/Negociacao";
+import { Negociacoes } from "../models/negociacoes";
+import { MensagemView } from "../views/mensagem-view";
+import { NegociacoesView } from "../views/negociacoes-view";
 
 export class NegociacaoController {
     private inputData: HTMLInputElement;
@@ -21,6 +22,7 @@ export class NegociacaoController {
     }
 
     //Adiciona uma nova negociação 
+    @logarTempoDeExecucao()
     public adiciona(): void {
         //Cria uma negociação a partir dos .value dos elementos HTML
         const negociacao = Negociacao.criaDe(
