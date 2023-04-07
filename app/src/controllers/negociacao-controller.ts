@@ -1,3 +1,4 @@
+import { Inspecionar } from "../decorators/inspecionar.js";
 import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { DiasDaSemana } from "../enums/DiasDaSemana";
 import { Negociacao } from "../models/Negociacao";
@@ -21,7 +22,8 @@ export class NegociacaoController {
         this.negociacoesView.update(this.negocicoes);
     }
 
-    //Adiciona uma nova negociação 
+    //Adiciona uma nova negociação
+    @Inspecionar
     @logarTempoDeExecucao()
     public adiciona(): void {
         //Cria uma negociação a partir dos .value dos elementos HTML
