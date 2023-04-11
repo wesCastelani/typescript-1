@@ -7,18 +7,20 @@ import { MensagemView } from "../views/mensagem-view";
 import { NegociacoesView } from "../views/negociacoes-view";
 
 export class NegociacaoController {
+    //Seleciona os elementos no DOM via querySelector pelo ID via decorator
+    @domInject('#data')
     private inputData: HTMLInputElement;
+    @domInject('#quantidade')
     private inputQtd: HTMLInputElement;
+    @domInject('#valor')
     private inputValor: HTMLInputElement;
+
     private negocicoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
     private mensagemView = new MensagemView('#mensagemView');
 
-    //Seleciona os elementos no DOM via querySelector pelo ID
+
     constructor() {
-        this.inputData = <HTMLInputElement>document.querySelector('#data');
-        this.inputQtd = <HTMLInputElement>document.querySelector('#quantidade');
-        this.inputValor = <HTMLInputElement>document.querySelector('#valor');
         this.negociacoesView.update(this.negocicoes);
     }
 
