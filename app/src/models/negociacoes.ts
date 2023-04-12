@@ -1,6 +1,7 @@
+import { Imprimivel } from "../utils/imprimivel";
 import { Negociacao } from "./Negociacao";
 
-export class Negociacoes {
+export class Negociacoes extends Imprimivel {
     //Definir nos <> o tipo que a lista deve receber
     //private negociacoes: Array<Negociacao> = [];
 
@@ -15,5 +16,9 @@ export class Negociacoes {
     //Lista as negociacoes contidas na lista em uma lista de somente leitura
     public lista(): readonly Negociacao[] {
         return this.negociacoes;
+    }
+
+    public toText(): string {
+        return JSON.stringify(this.negociacoes, null, 2)
     }
 }
