@@ -1,23 +1,26 @@
+import { domInjector } from "../decorators/dom-injector";
 import { Inspecionar } from "../decorators/inspecionar.js";
 import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { DiasDaSemana } from "../enums/DiasDaSemana";
 import { Negociacao } from "../models/Negociacao";
 import { Negociacoes } from "../models/negociacoes";
+import { NegociacoesService } from "../services/negociacoes-service.js";
 import { MensagemView } from "../views/mensagem-view";
 import { NegociacoesView } from "../views/negociacoes-view";
 
 export class NegociacaoController {
     //Seleciona os elementos no DOM via querySelector pelo ID via decorator
-    @domInject('#data')
+    @domInjector('#data')
     private inputData: HTMLInputElement;
-    @domInject('#quantidade')
+    @domInjector('#quantidade')
     private inputQtd: HTMLInputElement;
-    @domInject('#valor')
+    @domInjector('#valor')
     private inputValor: HTMLInputElement;
 
     private negocicoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
-    private mensagemView = new MensagemView('#mensagemView');
+    private mensagemView = new MensagemView('#mensagemView')
+    private negociacaoService = new NegociacoesService();
 
 
     constructor() {
@@ -45,6 +48,15 @@ export class NegociacaoController {
         this.atualizaView();
     }
 
+    importaDados(): void {
+        this.negociacaoService.obterNegociacoes()
+            .then(negociacoes => {
+                for (let negociacao of negociacoes) {
+                    this.negocicoes.adiciona(negociacao)
+                }
+                this.negociacoesView.update(this.negocicoes)
+            });
+    }
 
 
     //Limpa meu formulario apos a criação de uma negociacão
